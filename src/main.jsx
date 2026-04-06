@@ -6,35 +6,31 @@ import Home from "./pages/home.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Signup from "./pages/Signup.jsx";
 import Login from "./pages/Login.jsx";
+import ReviewProvider from "./store/ReviewProvider.jsx";
 
-const routes=createBrowserRouter([
+const routes = createBrowserRouter([
   {
-    path:'/',
-    element:<App/>,
-    children:[
+    path: "/",
+    element: <App />,
+    children: [
       {
-        path:'/',
-        element:<Home/>
-
+        path: "/",
+        element: <Home />,
       },
       {
-        path:'/signup',
-        element:<Signup/>
-
+        path: "/signup",
+        element: <Signup />,
       },
       {
-        path:'/login',
-        element:<Login/>
+        path: "/login",
+        element: <Login />,
       },
-    ]
-  }
-])
+    ],
+  },
+]);
 
 createRoot(document.getElementById("root")).render(
-  <RouterProvider router={routes}>
-    <StrictMode>
-      <App />
-    </StrictMode>
-    ,
-  </RouterProvider>,
+  <ReviewProvider>
+    <RouterProvider router={routes} />
+  </ReviewProvider>,
 );

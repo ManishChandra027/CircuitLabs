@@ -1,28 +1,30 @@
 import { Client, Databases, ID } from "appwrite";
 import config from "../../config/config";
 
-class Service {
+class ReviewService {
   client = new Client();
-  database;
+  Databases;
 
   constructor() {
     this.client
       .setEndpoint(config.appwriteEndPoint)
       .setProject(config.appwriteProjectId);
-    this.database = new Databases(this.client);
+    this.Databases = new Databases(this.client);
   }
 
-  async createContact({ name, phone, email, address }) {
+  async createReview({ title, slug, description, review, rating, imageId }) {
     try {
       const result = await this.databases.createDocument({
         databaseId: config.appwriteDatabaseId,
-        collectionId: config.appwriteCollectionId,
+        collectionId: config.appwriteCollectionIdReviews,
         documentId: ID.unique(),
         data: {
-          name,
-          email,
-          phone,
-          address,
+          slug,
+          title,
+          review,
+          description,
+          rating,
+          imageId
         },
       });
       if (result) {
@@ -33,13 +35,13 @@ class Service {
       console.log(err);
     }
   }
-  async getContact(id) {
+  async getReview(id,queries=[]) {
     try {
       const result = await this.databases.getDocument({
         databaseId: config.appwriteDatabaseId,
-        collectionId: config.appwriteCollectionId,
+        collectionId: config.appwriteCollectionIdReviews,
         documentId: id,
-        queries: [], // optional
+        queries
       });
       if (result) {
         console.log(result);
@@ -49,12 +51,11 @@ class Service {
       console.log(err);
     }
   }
-  async getContacts(id, queries = []) {
+  async getReviews(queries = []) {
     try {
       const result = await this.databases.listDocuments({
         databaseId: config.appwriteDatabaseId,
-        collectionId: config.appwriteCollectionId,
-
+        collectionId: config.appwriteCollectionIdReviews,
         queries, // optional
       });
       if (result) {
@@ -66,17 +67,19 @@ class Service {
     }
   }
 
-  async updateContact(id, { name, phone, email, address }) {
+  async updateReview(id, {title, slug,description, review, rating,imageId }) {
     try {
       const result = await this.databases.updateDocument({
         databaseId: config.appwriteDatabaseId,
-        collectionId: config.appwriteCollectionId,
+        collectionId: config.appwriteCollectionIdReviews,
         documentId: id,
         data: {
-          name,
-          email,
-          phone,
-          address,
+          title,
+          slug,
+          description,
+          review,
+          rating,
+          imageId
         },
       });
       if (result) {
@@ -88,11 +91,11 @@ class Service {
     }
   }
 
-  async deleteContact(id) {
+  async deleteReview(id) {
     try {
       const result = await this.databases.deleteDocument({
         databaseId: config.appwriteDatabaseId,
-        collectionId: config.appwriteCollectionId,
+        collectionId: config.appwriteCollectionIdReviews,
         documentId: id,
       });
 
@@ -105,3 +108,6 @@ class Service {
     }
   }
 }
+
+const reviewService = new ReviewService();
+export default reviewService;
