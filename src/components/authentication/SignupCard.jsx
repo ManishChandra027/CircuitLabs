@@ -3,12 +3,13 @@ import { useForm } from "react-hook-form";
 import user from "../../service/appwrite/auth";
 import { ReviewContext } from "../../Context/reviewContext";
 import { useNavigate } from "react-router";
+import profileService from "../../service/appwrite/profileService";
 
 const SignupCard = () => {
   const { register, handleSubmit } = useForm();
   const [error, setError] = useState("");
   const nevigate = useNavigate();
-  const { status, userData, setStatus, setUserData } =
+  const { status, userData, setStatus, setUserData} =
     useContext(ReviewContext);
 
   const Submit = async (data) => {
@@ -23,7 +24,12 @@ const SignupCard = () => {
           setStatus(true);
           setUserData(currUserdata);
 
-          nevigate("/");
+          const profileData=await profileService.createProfile({username:currUserdata.name ,userId:currUserdata.$id});
+         
+          if(profileData){
+            nevigate("/");
+          }
+
         }
       }
     } catch (err) {

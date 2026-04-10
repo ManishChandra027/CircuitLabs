@@ -12,6 +12,10 @@ import ReviewCard from "./components/Review Components/ReviewCard.jsx";
 import ReviewPost from "./components/Review Components/ReviewPost.jsx";
 import EditReview from "./pages/EditReview.jsx";
 import MyReview from "./pages/MyReview.jsx";
+import UpdateProfile from "./components/profile Components/UpdateProfile.jsx";
+import Profile from "./components/profile Components/Profile.jsx";
+import EditProfile from "./pages/EditProfile.jsx";
+
 
 const routes = createBrowserRouter([
   {
@@ -47,6 +51,17 @@ const routes = createBrowserRouter([
       {
         path: "/my-review",
         element: <MyReview/>,
+        
+      },
+      {
+        path: "/edit-Profile/:slug",
+        element: <EditProfile/> ,
+        
+      },
+      {
+        path: "/my-profile/:slug",
+        element: <Profile/>,
+        
         
       },
     ],

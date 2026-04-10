@@ -31,8 +31,8 @@ const ReviewPost = () => {
     if (isDeleted) {
       const file = await reviewService.delImage(post.imageId);
       if (file) {
-    }
-    navigate("/");
+      }
+      navigate("/");
     }
   };
 
@@ -58,9 +58,26 @@ const ReviewPost = () => {
             Published
           </span>
 
+          <span
+            onClick={() => {
+              navigate(`/my-profile/${post.userId}`);
+            }}
+            className="inline-block mt-2 text-xs text-red-600 font-medium cursor-pointer"
+          >
+            <span className="text-black ">By: </span>
+            {post?.username}
+          </span>
+
           {isAuthor && (
             <span className="flex justify-between gap-6">
-              <button className="cursor-pointer" onClick={()=>{navigate(`/edit-post/${post.$id}`)}} >edit</button>
+              <button
+                className="cursor-pointer"
+                onClick={() => {
+                  navigate(`/edit-post/${post.$id}`);
+                }}
+              >
+                edit
+              </button>
               <button onClick={deletePost} className="cursor-pointer">
                 delete
               </button>
