@@ -1,50 +1,54 @@
-import { Client, Databases, ID } from "appwrite";
+import { Client, Databases, ID ,Storage} from "appwrite";
 import config from "../../config/config";
 
 class ReviewService {
   client = new Client();
-  Databases;
+  databases;
+  bucket;
 
   constructor() {
     this.client
       .setEndpoint(config.appwriteEndPoint)
       .setProject(config.appwriteProjectId);
-    this.Databases = new Databases(this.client);
+    this.databases = new Databases(this.client);
+    this.bucket = new Storage(this.client);
   }
 
-  async createReview({ title, slug, description, review, rating, imageId }) {
+  async createReview({ title,description, review, rating=5, imageId,userId ,username}) {
     try {
       const result = await this.databases.createDocument({
         databaseId: config.appwriteDatabaseId,
         collectionId: config.appwriteCollectionIdReviews,
         documentId: ID.unique(),
         data: {
-          slug,
+          slug:ID.unique(),
           title,
           review,
           description,
           rating,
-          imageId
+          imageId,
+          userId,
+          username
         },
       });
       if (result) {
-        console.log(result);
+        // console.log(result);
         return result;
       }
     } catch (err) {
       console.log(err);
     }
   }
-  async getReview(id,queries=[]) {
+  async getReview(id, queries = []) {
     try {
       const result = await this.databases.getDocument({
         databaseId: config.appwriteDatabaseId,
         collectionId: config.appwriteCollectionIdReviews,
         documentId: id,
-        queries
+        queries,
       });
       if (result) {
-        console.log(result);
+        // console.log(result);
         return result;
       }
     } catch (err) {
@@ -59,7 +63,7 @@ class ReviewService {
         queries, // optional
       });
       if (result) {
-        console.log(result);
+        // console.log(result);
         return result;
       }
     } catch (err) {
@@ -67,7 +71,10 @@ class ReviewService {
     }
   }
 
-  async updateReview(id, {title, slug,description, review, rating,imageId }) {
+  async updateReview(
+    id,
+    { title, description, review, rating, imageId },
+  ) {
     try {
       const result = await this.databases.updateDocument({
         databaseId: config.appwriteDatabaseId,
@@ -75,15 +82,14 @@ class ReviewService {
         documentId: id,
         data: {
           title,
-          slug,
           description,
           review,
           rating,
-          imageId
+          imageId,
         },
       });
       if (result) {
-        console.log(result);
+        // console.log(result);
         return result;
       }
     } catch (err) {
@@ -100,9 +106,48 @@ class ReviewService {
       });
 
       if (result) {
-        console.log(result);
+        // console.log(result);
         return result;
       }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  async uplodeImage(imgFile) {
+    try {
+      const result = await this.bucket.createFile({
+        bucketId: config.appwriteBucketId,
+        fileId: ID.unique(),
+        file: imgFile,
+      });
+      // console.log("bucket iamge" + result);
+      return result;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+   getImage(fileId) {
+    try {
+      const result= this.bucket.getFileView({
+        bucketId: config.appwriteBucketId,
+        fileId,
+      });
+        // console.log("bucket iamge" + result);
+        return result;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async delImage(fileId) {
+    try {
+      const result = await this.bucket.deleteFile({
+        bucketId: config.appwriteBucketId,
+        fileId
+      });
+      // console.log("bucket iamge" + result);
+      return result;
     } catch (err) {
       console.log(err);
     }

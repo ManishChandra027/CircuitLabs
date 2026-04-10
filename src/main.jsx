@@ -6,7 +6,12 @@ import Home from "./pages/home.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Signup from "./pages/Signup.jsx";
 import Login from "./pages/Login.jsx";
-import ReviewProvider from "./store/ReviewProvider.jsx";
+import ReviewProvider from "./Context/ReviewProvider.jsx";
+import AddReviewCard from "./components/Review Components/AddReviewCard.jsx";
+import ReviewCard from "./components/Review Components/ReviewCard.jsx";
+import ReviewPost from "./components/Review Components/ReviewPost.jsx";
+import EditReview from "./pages/EditReview.jsx";
+import MyReview from "./pages/MyReview.jsx";
 
 const routes = createBrowserRouter([
   {
@@ -24,6 +29,25 @@ const routes = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/add-review",
+        element: <AddReviewCard/>,
+      },
+      {
+        path: "/post/:slug",
+        element: <ReviewPost/>,
+        
+      },
+      {
+        path: "/edit-post/:slug",
+        element: <EditReview/>,
+        
+      },
+      {
+        path: "/my-review",
+        element: <MyReview/>,
+        
       },
     ],
   },

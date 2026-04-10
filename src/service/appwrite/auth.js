@@ -24,7 +24,7 @@ class User {
         //login
         return this.login({email, password});
       }
-      console.log("result of account create" + result);
+      // console.log("result of account create" + result);
       return result;
     } catch (err) {
       console.log(err + "error while account create");
@@ -38,7 +38,7 @@ class User {
         password,
       });
 
-      console.log("result of account login" + result);
+      // console.log("result of account login" + result);
       return result;
     } catch (err) {
       console.log(err + "error while account login");
@@ -48,10 +48,10 @@ class User {
   async getAccount() {
     try {
       const result = await this.account.get();
-      console.log("get account:" + result);
+      // console.log("get account:" + result);
       return result;
     } catch (err) {
-      console.log("error whilr getAccount: " + err);
+      // console.log("error whilr getAccount: " + err);
     }
   }
 

@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { ReviewContext } from "./reviewContext";
 
+
 const ReviewProvider = ({ children }) => {
   const [status, setStatus] = useState(false);
-  const [userData, setUserdata] = useState({});
+  const [userData, setUserData] = useState(null);
 
   return (
     <ReviewContext.Provider
-      value={{ status, userData, setStatus, setUserdata }}
+      value={{ status, userData, setStatus, setUserData }}
     >
       {children}
     </ReviewContext.Provider>

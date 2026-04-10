@@ -1,14 +1,31 @@
-import React from "react";
-import SignupCard from "./components/SignupCard";
+import React, { useContext, useEffect } from "react";
 
-import { Outlet } from "react-router";
-import Header from "./components/Header";
+import { Outlet, useNavigate } from "react-router";
+import Header from "./components/header/Header";
+import { ReviewContext } from "./Context/reviewContext";
+import user from "./service/appwrite/auth";
 
 const App = () => {
+  const { setStatus, setUserData } = useContext(ReviewContext);
+  const nevigate = useNavigate();
+
+  useEffect(() => {
+    const checkUser = async () => {
+      const userData = await user.getAccount();
+      if (userData) {
+        setStatus(true);
+        setUserData(userData);
+      } else {
+        nevigate("/login");
+      }
+    };
+    checkUser();
+  }, []);
+
   return (
     <>
-     <Header/>
-    <Outlet />
+      <Header />
+      <Outlet />
     </>
   );
 };
