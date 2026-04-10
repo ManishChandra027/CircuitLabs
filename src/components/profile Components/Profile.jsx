@@ -3,6 +3,7 @@ import profileService from "../../service/appwrite/profileService";
 import { useNavigate, useParams } from "react-router-dom";
 import { Query  } from "appwrite";
 import { ReviewContext } from "../../Context/reviewContext";
+
 const Profile = () => {
   const {slug}=useParams(); 
   const navigate = useNavigate();
@@ -21,15 +22,15 @@ useEffect(() => {
 
 
   return (
-    <div className="max-w-l w-auto bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-md transition-shadow duration-200">
-      <div className="w-full  h-40 overflow-hidden">
-        <img
+    <div className="max-w-xs w-full m-10 bg-white border border-gray-200 rounded-2xl overflow-hidden hover:shadow-md transition-shadow duration-200">
+      <div className=" w-full h-60 overflow-hidden ">
+        <img className="w-full"
           src={
-            post.avatarId
+            post?.avatarId
               ? profileService.getImage(post?.avatarId)
               : "/fallback.jpg"
           }
-          alt={post?.usernname}
+          alt={post?.username}
         />
       </div>
 

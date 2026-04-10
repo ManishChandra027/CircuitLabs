@@ -4,6 +4,7 @@ import user from "../../service/appwrite/auth";
 import { ReviewContext } from "../../Context/reviewContext";
 import LogoutBtn from "../authentication/LogoutBtn";
 import profileService from "../../service/appwrite/profileService";
+import Logo from "../Logo";
 
 const Header = () => {
   const nevigate = useNavigate();
@@ -23,8 +24,9 @@ const Header = () => {
     },
   ];
   return (
-    <div className="w-full bg-gray-400 h-20 flex gap-3 ">
-      <ul className="flex gap-3 justify-around items-center cursor-pointer">
+    <div className="w-full bg-gray-100 h-20 flex gap-3 ">
+      <ul className="flex gap-8 justify-around items-center cursor-pointer">
+        <Logo/>
         {navItem.map((item) =>
           item.isActive ? (
             <li key={item.name}>

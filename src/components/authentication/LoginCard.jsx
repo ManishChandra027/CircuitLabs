@@ -1,5 +1,3 @@
-
-
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import user from "../../service/appwrite/auth";
@@ -39,8 +37,6 @@ const LoginCard = () => {
         <h1 className="text-2xl font-semibold text-center mb-4">Login</h1>
         <p>{error}</p>
         <form className="flex flex-col gap-3" onSubmit={handleSubmit(Submit)}>
-        
-
           <input
             type="email"
             placeholder="eamil"
