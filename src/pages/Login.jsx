@@ -1,5 +1,5 @@
 import React from 'react'
-import LoginCard from '../components/Authentication/LoginCard'
+import LoginCard from '../components/Auth/LoginCard'
 
 
 const Login = () => {

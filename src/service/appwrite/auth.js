@@ -22,12 +22,11 @@ class User {
 
       if (result) {
         //login
-        return this.login({email, password});
+        return this.login({ email, password });
       }
-      // console.log("result of account create" + result);
       return result;
     } catch (err) {
-      console.log(err + "error while account create");
+      console.log(err);
     }
   }
 
@@ -38,33 +37,29 @@ class User {
         password,
       });
 
-      // console.log("result of account login" + result);
       return result;
     } catch (err) {
-      console.log(err + "error while account login");
+      console.log(err);
     }
   }
 
   async getAccount() {
     try {
       const result = await this.account.get();
-      // console.log("get account:" + result);
       return result;
-    } catch (err) {
-      // console.log("error whilr getAccount: " + err);
-    }
+    } catch (err) {}
   }
 
   async logout() {
     try {
       const result = await this.account.deleteSessions();
-      console.log("logout succesful:" + result);
+      console.log(result);
 
       return result;
     } catch (err) {
-      console.log("error whilr logout: " + err);
+      console.log(err);
     }
   }
 }
 const user = new User();
-export default user
+export default user;

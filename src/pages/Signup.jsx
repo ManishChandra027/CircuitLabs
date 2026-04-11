@@ -1,5 +1,5 @@
 import React from 'react'
-import SignupCard from '../components/Authentication/SignupCard'
+import SignupCard from '../components/Auth/SignupCard'
 
 
 const Signup = () => {

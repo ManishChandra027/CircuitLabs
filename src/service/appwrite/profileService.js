@@ -28,7 +28,6 @@ class ProfileService {
         },
       });
       if (result) {
-        // console.log(result);
         return result;
       }
     } catch (err) {
@@ -44,7 +43,6 @@ class ProfileService {
         queries,
       });
       if (result) {
-        // console.log(result);
         return result;
       }
     } catch (err) {
@@ -59,7 +57,6 @@ class ProfileService {
         queries, // optional
       });
       if (result) {
-        // console.log(result);
         return result;
       }
     } catch (err) {
@@ -79,7 +76,6 @@ class ProfileService {
         },
       });
       if (result) {
-        // console.log(result);
         return result;
       }
     } catch (err) {
@@ -94,7 +90,6 @@ class ProfileService {
         fileId: ID.unique(),
         file: imgFile,
       });
-      // console.log("bucket iamge" + result);
       return result;
     } catch (err) {
       console.log(err);
@@ -107,7 +102,6 @@ class ProfileService {
         bucketId: config.appwriteBucketId,
         fileId,
       });
-      // console.log("bucket iamge" + result);
       return result;
     } catch (err) {
       console.log(err);
@@ -120,7 +114,6 @@ class ProfileService {
         bucketId: config.appwriteBucketId,
         fileId,
       });
-      // console.log("bucket iamge" + result);
       return result;
     } catch (err) {
       console.log(err);

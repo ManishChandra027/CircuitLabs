@@ -7,12 +7,12 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Signup from "./pages/Signup.jsx";
 import Login from "./pages/Login.jsx";
 import ReviewProvider from "./Context/ReviewProvider.jsx";
-import AddReviewCard from "./components/Review Components/AddReviewCard.jsx";
-import ReviewPost from "./components/Review Components/ReviewPost.jsx";
-import EditReview from "./pages/EditReview.jsx";
-import MyReview from "./pages/MyReview.jsx";
-import Profile from "./components/profile Components/Profile.jsx";
-import EditProfile from "./pages/EditProfile.jsx";
+import EditReview from "./pages/EditPost.jsx";
+import Profile from "./pages/Profile.jsx";
+import PostDetails from "./components/Posts/PostDetails.jsx";
+import MyPost from "./pages/MyPost.jsx";
+import PostForm from "./components/Posts/PostForm.jsx";
+import EditPost from "./pages/EditPost.jsx";
 
 const routes = createBrowserRouter([
   {
@@ -32,27 +32,24 @@ const routes = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: "/add-review",
-        element: <AddReviewCard />,
+        path: "/add-post",
+        element: <PostForm />,
       },
       {
         path: "/post/:slug",
-        element: <ReviewPost />,
+        element: <PostDetails />,
       },
       {
         path: "/edit-post/:slug",
-        element: <EditReview />,
+        element: <EditPost />,
       },
       {
-        path: "/my-review",
-        element: <MyReview />,
+        path: "/my-post",
+        element: <MyPost />,
       },
+
       {
-        path: "/edit-Profile/:slug",
-        element: <EditProfile />,
-      },
-      {
-        path: "/my-profile/:slug",
+        path: "/profile/:slug",
         element: <Profile />,
       },
     ],
