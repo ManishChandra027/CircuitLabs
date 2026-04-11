@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router";
+import Logo from "../components/Logo";
 
 export const Footer = () => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ export const Footer = () => {
               className="text-white text-base font-medium cursor-pointer"
               onClick={() => navigate("/")}
             >
-              The<span className="text-[#e8c84a]">Daily</span>Craft
+             <Logo/>
             </span>
             <p className="text-xs text-[#444]">
               A community for gamers, by gamers.

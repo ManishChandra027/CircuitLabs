@@ -4,6 +4,7 @@ import { ReviewContext } from "../../Context/reviewContext";
 import LogoutBtn from "../auth/LogoutBtn";
 import profileService from "../../service/appwrite/profileService";
 import { Query } from "appwrite";
+import Logo from "../Logo";
 
 const Header = () => {
   const { status, userData } = useContext(ReviewContext);
@@ -45,7 +46,7 @@ const Header = () => {
           className="text-white text-base font-medium cursor-pointer shrink-0"
           onClick={() => { navigate("/"); setMenuOpen(false); }}
         >
-          The<span className="text-[#e8c84a]">Daily</span>Craft
+       <Logo/>
         </span>
 
         {/* Desktop Nav — hidden on mobile */}
