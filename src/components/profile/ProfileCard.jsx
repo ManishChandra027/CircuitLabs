@@ -61,16 +61,16 @@ const ProfileCard = () => {
 
   if (!profile) return (
     <div className="min-h-screen flex items-center justify-center bg-[#0d0d0d]">
-      <div className="w-8 h-8 border-2 border-[#2a2a2a] border-t-yellow-400 rounded-full animate-spin" />
+      <div className="w-8 h-8 border-2 border-[#2a2a2a] border-t-[#06B6D4] rounded-full animate-spin" />
     </div>
   );
 
   return (
-    <div className="max-w-xs w-full mx-auto mt-10 p-6 bg-[#161616] border border-[#2a2a2a] rounded-xl flex flex-col items-center text-center">
+    <div className="max-w-xs w-full mx-auto mt-2 p-4  rounded-xl flex flex-col items-center text-center">
       {isEdit ? (
         <form onSubmit={handleSubmit(handleUpdate)} className="w-full flex flex-col items-center gap-3">
           <label htmlFor="avatarUpload" className="cursor-pointer">
-            <div className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-yellow-400">
+            <div className="relative w-54 h-54 rounded-full overflow-hidden border-2 border-[#06B6D4]">
               <img
                 className="w-full h-full object-cover"
                 src={profile.avatarId ? profileService.getImage(profile.avatarId) : "/fallback.jpg"}
@@ -86,7 +86,7 @@ const ProfileCard = () => {
 
           <textarea
             placeholder="Update your bio..."
-            className="w-full bg-[#1e1e1e] border border-[#2a2a2a] text-white text-sm p-2 rounded-lg focus:outline-none focus:border-yellow-400 resize-none"
+            className="w-full bg-[#1e1e1e] border border-[#2a2a2a] text-white text-sm p-2 rounded-lg focus:outline-none focus:border-[#06B6D4] resize-none"
             rows={3}
             {...register("bio")}
           />
@@ -94,14 +94,14 @@ const ProfileCard = () => {
           <div className="flex gap-3 w-full">
             <button
               type="submit"
-              className="flex-1 py-1.5 text-sm bg-yellow-400 text-black rounded-lg font-medium hover:bg-yellow-300 transition-colors"
+              className="flex-1 py-1.5 text-sm bg-[#06B6D4] text-black rounded-lg font-medium hover:bg-[#0891B2] transition-colors"
             >
               Update
             </button>
             <button
               type="button"
               onClick={() => setIsEdit(false)}
-              className="flex-1 py-1.5 text-sm border border-[#2a2a2a] text-gray-400 rounded-lg hover:border-yellow-400 hover:text-yellow-400 transition-colors"
+              className="flex-1 py-1.5 text-sm border border-[#2a2a2a] text-gray-400 rounded-lg hover:border-[#06B6D4] hover:text-[#06B6D4] transition-colors"
             >
               Cancel
             </button>
@@ -111,12 +111,12 @@ const ProfileCard = () => {
         <>
           {profile.avatarId ? (
             <img
-              className="w-24 h-24 rounded-full object-cover border-2 border-yellow-400"
+              className="w-54 h-54 rounded-full object-cover border-2 border-[#0891B2]"
               src={profileService.getImage(profile.avatarId)}
               alt={profile.username}
             />
           ) : (
-            <div className="w-24 h-24 rounded-full bg-yellow-400 text-black text-3xl font-medium flex items-center justify-center border-2 border-yellow-400">
+            <div className="w-54 h-54 rounded-full bg-[#0891B2] text-black text-6xl font-medium flex items-center justify-center border-2 border-[#06B6D4]">
               {profile.username?.charAt(0).toUpperCase()}
             </div>
           )}
@@ -126,7 +126,7 @@ const ProfileCard = () => {
 
           {isAuthor && (
             <button
-              className="mt-4 px-5 py-1.5 text-sm bg-yellow-400 text-black rounded-lg font-medium hover:bg-yellow-300 transition-colors"
+              className="mt-4 px-5 py-1.5 text-sm bg-[#06B6D4] text-black rounded-lg font-medium hover:bg-[#0891B2] transition-colors"
               onClick={() => setIsEdit(true)}
             >
               Edit Profile

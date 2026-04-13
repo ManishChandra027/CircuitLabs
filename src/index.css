@@ -1,1 +1,7 @@
 @import "tailwindcss";
+
+
+@theme {
+  --font-outfit: "Outfit", sans-serif; 
+  --font-jet: 'JetBrains Mono', 'monospace'; 
+}

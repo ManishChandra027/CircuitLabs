@@ -29,7 +29,7 @@ const LoginCard = () => {
     }
   };
 
-  const inputClass = "w-full bg-[#1a1a1a] border border-[#2a2a2a] text-white placeholder-[#444] p-2.5 rounded-lg focus:outline-none focus:border-[#e8c84a] transition-colors text-sm";
+  const inputClass = "w-full bg-[#1a1a1a] border border-[#2a2a2a] text-white placeholder-[#444] p-2.5 rounded-lg focus:outline-none focus:border-[#06B6D4] transition-colors text-sm";
   const labelClass = "text-xs text-[#666] block mb-1";
 
   return (
@@ -74,7 +74,7 @@ const LoginCard = () => {
 
           <button
             type="submit"
-            className="w-full bg-[#e8c84a] text-black text-sm font-medium py-2.5 rounded-lg hover:bg-[#d4b340] transition-colors mt-1"
+            className="w-full bg-[#06B6D4] text-black text-sm font-medium py-2.5 rounded-lg hover:bg-[#0891B2] transition-colors mt-1"
           >
             Login
           </button>
@@ -85,7 +85,7 @@ const LoginCard = () => {
           Don't have an account?{" "}
           <span
             onClick={() => navigate("/signup")}
-            className="text-[#e8c84a] cursor-pointer hover:underline"
+            className="text-[#06B6D4] cursor-pointer hover:underline"
           >
             Sign up
           </span>

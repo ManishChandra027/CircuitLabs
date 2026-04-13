@@ -49,7 +49,7 @@ const Home = () => {
     <div className="py-10">
       {/* Page header */}
       <div className="mb-7">
-        <p className="text-xs text-[#e8c84a] uppercase tracking-widest mb-1">Community</p>
+        <p className="text-xs font-semibold text-[#06B6D4] uppercase tracking-widest mb-1">Community</p>
         <h1 className="text-xl font-medium text-white">Latest Posts</h1>
       </div>
 

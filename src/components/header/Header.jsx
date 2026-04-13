@@ -39,7 +39,7 @@ const Header = () => {
   return (
     <>
       {/* Main Navbar */}
-      <div className="sticky top-0 z-50 bg-[#0f0f0f] border-b border-[#1e1e1e] flex items-center justify-between w-full h-14 px-4 sm:px-6">
+      <div className="sticky top-0 z-50 bg-[#0f0f0f] border-b border-[#1e1e1e] flex items-center justify-between w-full h-18 px-4 sm:px-6">
         
         {/* Logo */}
         <span
@@ -86,7 +86,7 @@ const Header = () => {
                     alt={userData?.name}
                   />
                 ) : (
-                  <div className="w-7 h-7 rounded-full bg-[#e8c84a] text-black text-xs font-medium flex items-center justify-center">
+                  <div className="w-7 h-7 rounded-full bg-[#06B6D4] text-black text-xs font-medium flex items-center justify-center">
                     {userData?.name?.charAt(0).toUpperCase()}
                   </div>
                 )}
@@ -112,7 +112,7 @@ const Header = () => {
                     alt={userData?.name}
                   />
                 ) : (
-                  <div className="w-7 h-7 rounded-full bg-[#e8c84a] text-black text-xs font-medium flex items-center justify-center">
+                  <div className="w-7 h-7 rounded-full bg-[#0891B2] text-black text-xs font-medium flex items-center justify-center">
                     {userData?.name?.charAt(0).toUpperCase()}
                   </div>
                 )}

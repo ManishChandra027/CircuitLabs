@@ -51,7 +51,7 @@ const PostForm = ({ existingPost }) => {
     }
   };
 
-  const inputClass = "w-full bg-[#1e1e1e] border border-[#2a2a2a] text-white text-sm p-2.5 rounded-lg focus:outline-none focus:border-yellow-400 placeholder-[#444] transition-colors";
+  const inputClass = "w-full bg-[#1e1e1e] border border-[#2a2a2a] text-white text-sm p-2.5 rounded-lg focus:outline-none focus:border-[#06B6D4] placeholder-[#444] transition-colors";
 
   return (
     <div className="min-h-screen bg-[#0d0d0d] flex items-center justify-center px-4 py-12">
@@ -64,9 +64,9 @@ const PostForm = ({ existingPost }) => {
           <input type="text" placeholder="Title" className={inputClass} {...register("title", { required: true })} />
           <textarea placeholder="Description" rows={3} className={`${inputClass} resize-none`} {...register("description")} />
           <textarea placeholder="Review" rows={4} className={`${inputClass} resize-none`} {...register("review")} />
-          <input type="file" className="text-xs text-gray-400 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:bg-yellow-400 file:text-black file:cursor-pointer" {...register("image")} />
+          <input type="file" className="text-xs text-gray-400 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:bg-[#06B6D4] file:text-black file:cursor-pointer" {...register("image")} />
 
-          <button type="submit" className="mt-2 w-full py-2 bg-yellow-400 text-black text-sm font-medium rounded-lg hover:bg-yellow-300 transition-colors">
+          <button type="submit" className="mt-2 w-full py-2 bg-[#06B6D4] text-black text-sm font-medium rounded-lg hover:bg-[#0891B2] transition-colors cursor-pointer">
             {existingPost ? "Update Post" : "Publish Post"}
           </button>
         </form>

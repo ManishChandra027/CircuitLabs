@@ -2,16 +2,18 @@ import React, { useContext, useEffect, useState } from "react";
 import { ReviewContext } from "../../Context/reviewContext";
 import { useNavigate, useParams } from "react-router-dom";
 import reviewService from "../../service/appwrite/reviewService";
+import profileService from "../../service/appwrite/profileService";
+import { Query } from "appwrite";
 
 const PostDetails = () => {
-  const [post, setPost] = useState({});
+  const [post, setPost] = useState(null);
   const { slug } = useParams();
   const { userData } = useContext(ReviewContext);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
+  const [profile, setProfile] = useState(null);
 
   const isAuthor = post?.userId === userData?.$id;
-
   useEffect(() => {
     const fetchPost = async () => {
       setLoading(true);
@@ -29,8 +31,24 @@ const PostDetails = () => {
     };
     fetchPost();
   }, [slug, navigate]);
+  
+ 
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        if (!post) return;
+        const data = await profileService.getProfiles([Query.equal("userId", post?.userId)]);
+        if (!data || data.documents.length === 0) throw new Error("No profile found");
+        setProfile(data.documents[0]);
+      } catch (err) {
+        console.error(err);
+        setError(err.message);
+      }
+    };
+    fetchProfile();
+  }, [post]);
 
-  const deletePost = async () => {
+   const deletePost = async () => {
     try {
       const isDeleted = await reviewService.deleteReview(slug);
       if (isDeleted) {
@@ -42,10 +60,12 @@ const PostDetails = () => {
     }
   };
 
+
+  
   if (loading) {
     return (
       <div className="min-h-[60vh] flex items-center justify-center">
-        <div className="w-7 h-7 border-2 border-[#2a2a2a] border-t-[#e8c84a] rounded-full animate-spin" />
+        <div className="w-7 h-7 border-2 border-[#2a2a2a] border-t-[#06B6D4] rounded-full animate-spin" />
       </div>
     );
   }
@@ -56,7 +76,7 @@ const PostDetails = () => {
       {/* Back */}
       <button
         onClick={() => navigate("/")}
-        className="flex items-center gap-2 text-sm text-[#555] hover:text-[#e8c84a] transition-colors mb-8 cursor-pointer bg-transparent border-none"
+        className="flex items-center gap-2 text-sm text-[#555] hover:text-[#06B6D4] transition-colors mb-8 cursor-pointer bg-transparent border-none"
       >
         ← Back to Home
       </button>
@@ -72,9 +92,16 @@ const PostDetails = () => {
           className="flex items-center gap-2 cursor-pointer"
           onClick={() => navigate(`/profile/${post.userId}`)}
         >
-          <div className="w-7 h-7 rounded-full bg-[#e8c84a] text-black text-xs font-medium flex items-center justify-center">
+          {profile?.avatarId?(
+                  <img
+                    src={profileService.getImage(profile.avatarId)}
+                    className="w-7 h-7 rounded-full object-cover"
+                    alt={userData?.name}
+                  />
+                ):<div className="w-7 h-7 rounded-full bg-[#0891B2] text-black text-xs font-medium flex items-center justify-center">
             {post?.username?.charAt(0).toUpperCase()}
-          </div>
+          </div>}
+          
           <span className="text-sm text-[#888] hover:text-[#ccc] transition-colors">
             {post?.username}
           </span>
@@ -84,7 +111,7 @@ const PostDetails = () => {
           <div className="flex items-center gap-2">
             <button
               onClick={() => navigate(`/edit-post/${post.$id}`)}
-              className="text-xs px-3 py-1.5 border border-[#2a2a2a] text-[#888] rounded-lg hover:border-[#e8c84a] hover:text-[#e8c84a] transition-colors cursor-pointer bg-transparent"
+              className="text-xs px-3 py-1.5 border border-[#2a2a2a] text-[#888] rounded-lg hover:border-[#0891B2] hover:text-[#06B6D4] transition-colors cursor-pointer bg-transparent"
             >
               Edit
             </button>
