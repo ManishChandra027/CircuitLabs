@@ -18,7 +18,10 @@ const PostDetails = () => {
     const fetchPost = async () => {
       setLoading(true);
       try {
-        if (!slug) { navigate("/"); return; }
+        if (!slug) {
+          navigate("/");
+          return;
+        }
         const data = await reviewService.getReview(slug);
         if (data) setPost(data);
         else navigate("/");
@@ -31,14 +34,16 @@ const PostDetails = () => {
     };
     fetchPost();
   }, [slug, navigate]);
-  
- 
+
   useEffect(() => {
     const fetchProfile = async () => {
       try {
         if (!post) return;
-        const data = await profileService.getProfiles([Query.equal("userId", post?.userId)]);
-        if (!data || data.documents.length === 0) throw new Error("No profile found");
+        const data = await profileService.getProfiles([
+          Query.equal("userId", post?.userId),
+        ]);
+        if (!data || data.documents.length === 0)
+          throw new Error("No profile found");
         setProfile(data.documents[0]);
       } catch (err) {
         console.error(err);
@@ -48,7 +53,7 @@ const PostDetails = () => {
     fetchProfile();
   }, [post]);
 
-   const deletePost = async () => {
+  const deletePost = async () => {
     try {
       const isDeleted = await reviewService.deleteReview(slug);
       if (isDeleted) {
@@ -60,8 +65,6 @@ const PostDetails = () => {
     }
   };
 
-
-  
   if (loading) {
     return (
       <div className="min-h-[60vh] flex items-center justify-center">
@@ -72,7 +75,6 @@ const PostDetails = () => {
 
   return (
     <div className="max-w-2xl mx-auto py-10">
-
       {/* Back */}
       <button
         onClick={() => navigate("/")}
@@ -92,16 +94,18 @@ const PostDetails = () => {
           className="flex items-center gap-2 cursor-pointer"
           onClick={() => navigate(`/profile/${post.userId}`)}
         >
-          {profile?.avatarId?(
-                  <img
-                    src={profileService.getImage(profile.avatarId)}
-                    className="w-7 h-7 rounded-full object-cover"
-                    alt={userData?.name}
-                  />
-                ):<div className="w-7 h-7 rounded-full bg-[#0891B2] text-black text-xs font-medium flex items-center justify-center">
-            {post?.username?.charAt(0).toUpperCase()}
-          </div>}
-          
+          {profile?.avatarId ? (
+            <img
+              src={profileService.getImage(profile.avatarId)}
+              className="w-7 h-7 rounded-full object-cover"
+              alt={userData?.name}
+            />
+          ) : (
+            <div className="w-7 h-7 rounded-full bg-[#0891B2] text-black text-xs font-medium flex items-center justify-center">
+              {post?.username?.charAt(0).toUpperCase()}
+            </div>
+          )}
+
           <span className="text-sm text-[#888] hover:text-[#ccc] transition-colors">
             {post?.username}
           </span>
@@ -127,9 +131,9 @@ const PostDetails = () => {
 
       {/* Cover Image */}
       {post?.imageId && (
-        <div className="w-full h-72 rounded-xl overflow-hidden mb-8 bg-[#141414]">
+        <div className="w-full h-72 rounded-xl overflow-hidden mb-8 bg-[#141414] object-top">
           <img
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover "
             src={reviewService.getImage(post.imageId)}
             alt={post?.title}
           />
@@ -145,12 +149,9 @@ const PostDetails = () => {
         )}
 
         {post?.review && (
-          <p className="text-sm text-[#777] leading-loose">
-            {post.review}
-          </p>
+          <p className="text-sm text-[#777] leading-loose">{post.review}</p>
         )}
       </div>
-
     </div>
   );
 };

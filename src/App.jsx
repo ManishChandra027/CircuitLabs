@@ -22,7 +22,7 @@ const App = () => {
   return (
     <div className="min-h-screen bg-[#0a0a0a] font-outfit">
       <Header />
-      <div className="w-full max-w-6xl mx-auto px-6">
+      <div className="w-full max-w-8xl mx-auto px-6 md:px-10 ">
         <Outlet />
       </div>
       <Footer/>

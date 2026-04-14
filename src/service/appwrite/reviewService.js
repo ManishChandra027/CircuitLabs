@@ -1,4 +1,4 @@
-import { Client, Databases, ID ,Storage} from "appwrite";
+import { Client, Databases, ID, Storage } from "appwrite";
 import config from "../../config/config";
 
 class ReviewService {
@@ -14,21 +14,29 @@ class ReviewService {
     this.bucket = new Storage(this.client);
   }
 
-  async createReview({ title,description, review, rating=5, imageId,userId ,username}) {
+  async createReview({
+    title,
+    description,
+    review,
+    rating = 5,
+    imageId,
+    userId,
+    username,
+  }) {
     try {
       const result = await this.databases.createDocument({
         databaseId: config.appwriteDatabaseId,
         collectionId: config.appwriteCollectionIdReviews,
         documentId: ID.unique(),
         data: {
-          slug:ID.unique(),
+          slug: ID.unique(),
           title,
           review,
           description,
           rating,
           imageId,
           userId,
-          username
+          username,
         },
       });
       if (result) {
@@ -68,10 +76,7 @@ class ReviewService {
     }
   }
 
-  async updateReview(
-    id,
-    { title, description, review, rating, imageId },
-  ) {
+  async updateReview(id, { title, description, review, rating, imageId }) {
     try {
       const result = await this.databases.updateDocument({
         databaseId: config.appwriteDatabaseId,
@@ -121,13 +126,13 @@ class ReviewService {
     }
   }
 
-   getImage(fileId) {
+  getImage(fileId) {
     try {
-      const result= this.bucket.getFileView({
+      const result = this.bucket.getFileView({
         bucketId: config.appwriteBucketId,
         fileId,
       });
-        return result;
+      return result;
     } catch (err) {
       console.log(err);
     }
@@ -137,7 +142,7 @@ class ReviewService {
     try {
       const result = await this.bucket.deleteFile({
         bucketId: config.appwriteBucketId,
-        fileId
+        fileId,
       });
       return result;
     } catch (err) {

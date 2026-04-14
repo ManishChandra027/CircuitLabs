@@ -67,7 +67,6 @@ const Profile = () => {
       ) : (
         <div className="py-5">
           <div className="mb-7">
-            
             <h1 className="text-xl font-medium text-white">Posts</h1>
           </div>
 

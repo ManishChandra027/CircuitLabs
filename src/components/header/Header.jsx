@@ -17,7 +17,9 @@ const Header = () => {
     if (!userData?.$id) return;
     const fetchProfile = async () => {
       try {
-        const data = await profileService.getProfiles([Query.equal("userId", userData.$id)]);
+        const data = await profileService.getProfiles([
+          Query.equal("userId", userData.$id),
+        ]);
         if (data?.documents?.length > 0) setProfile(data.documents[0]);
       } catch (err) {
         console.error(err);
@@ -40,13 +42,15 @@ const Header = () => {
     <>
       {/* Main Navbar */}
       <div className="sticky top-0 z-50 bg-[#0f0f0f] border-b border-[#1e1e1e] flex items-center justify-between w-full h-18 px-4 sm:px-6">
-        
         {/* Logo */}
         <span
           className="text-white text-base font-medium cursor-pointer shrink-0"
-          onClick={() => { navigate("/"); setMenuOpen(false); }}
+          onClick={() => {
+            navigate("/");
+            setMenuOpen(false);
+          }}
         >
-       <Logo/>
+          <Logo />
         </span>
 
         {/* Desktop Nav — hidden on mobile */}
@@ -71,7 +75,6 @@ const Header = () => {
 
         {/* Right side */}
         <div className="flex items-center gap-3">
-          
           {/* Desktop: avatar + name + logout */}
           {authStatus && (
             <div className="hidden md:flex items-center gap-3">
@@ -82,7 +85,7 @@ const Header = () => {
                 {profile?.avatarId ? (
                   <img
                     src={profileService.getImage(profile.avatarId)}
-                    className="w-7 h-7 rounded-full object-cover"
+                    className="w-8 h-8 rounded-full object-cover"
                     alt={userData?.name}
                   />
                 ) : (
@@ -124,12 +127,17 @@ const Header = () => {
               onClick={() => setMenuOpen(!menuOpen)}
               className="flex flex-col gap-1 p-1.5 cursor-pointer bg-transparent border-none"
             >
-              <span className={`block w-5 h-0.5 bg-[#888] transition-all duration-200 ${menuOpen ? "rotate-45 translate-y-1.5" : ""}`} />
-              <span className={`block w-5 h-0.5 bg-[#888] transition-all duration-200 ${menuOpen ? "opacity-0" : ""}`} />
-              <span className={`block w-5 h-0.5 bg-[#888] transition-all duration-200 ${menuOpen ? "-rotate-45 -translate-y-1.5" : ""}`} />
+              <span
+                className={`block w-5 h-0.5 bg-[#888] transition-all duration-200 ${menuOpen ? "rotate-45 translate-y-1.5" : ""}`}
+              />
+              <span
+                className={`block w-5 h-0.5 bg-[#888] transition-all duration-200 ${menuOpen ? "opacity-0" : ""}`}
+              />
+              <span
+                className={`block w-5 h-0.5 bg-[#888] transition-all duration-200 ${menuOpen ? "-rotate-45 -translate-y-1.5" : ""}`}
+              />
             </button>
           </div>
-
         </div>
       </div>
 

@@ -1,11 +1,8 @@
-import React from 'react'
-import SignupCard from '../components/Auth/SignupCard'
-
+import React from "react";
+import SignupCard from "../components/Auth/SignupCard";
 
 const Signup = () => {
-  return (
-   <SignupCard/>
-  )
-}
+  return <SignupCard />;
+};
 
-export default Signup
+export default Signup;

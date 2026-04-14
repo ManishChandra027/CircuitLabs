@@ -36,21 +36,25 @@ const SignupCard = () => {
     }
   };
 
-  const inputClass = "w-full bg-[#1a1a1a] border border-[#2a2a2a] text-white placeholder-[#444] p-2.5 rounded-lg focus:outline-none focus:border-[#06B6D4] transition-colors text-sm";
+  const inputClass =
+    "w-full bg-[#1a1a1a] border border-[#2a2a2a] text-white placeholder-[#444] p-2.5 rounded-lg focus:outline-none focus:border-[#06B6D4] transition-colors text-sm";
   const labelClass = "text-xs text-[#666] block mb-1";
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-[#0f0f0f]">
       <div className="bg-[#141414] border border-[#1e1e1e] p-7 rounded-xl w-full max-w-sm">
-
         <h1 className="text-lg font-medium text-white text-center mb-6">
           Create account
         </h1>
 
-        <form className="flex flex-col gap-4" onSubmit={handleSubmit(handleSignup)}>
-
+        <form
+          className="flex flex-col gap-4"
+          onSubmit={handleSubmit(handleSignup)}
+        >
           <div>
-            <label htmlFor="name" className={labelClass}>Name</label>
+            <label htmlFor="name" className={labelClass}>
+              Name
+            </label>
             <input
               type="text"
               id="name"
@@ -64,7 +68,9 @@ const SignupCard = () => {
           </div>
 
           <div>
-            <label htmlFor="email" className={labelClass}>Email</label>
+            <label htmlFor="email" className={labelClass}>
+              Email
+            </label>
             <input
               id="email"
               type="email"
@@ -78,7 +84,9 @@ const SignupCard = () => {
           </div>
 
           <div>
-            <label htmlFor="password" className={labelClass}>Password</label>
+            <label htmlFor="password" className={labelClass}>
+              Password
+            </label>
             <input
               id="password"
               type="password"
@@ -99,7 +107,6 @@ const SignupCard = () => {
           >
             Sign Up
           </button>
-
         </form>
 
         <p className="text-xs text-[#555] text-center mt-5">
@@ -111,7 +118,6 @@ const SignupCard = () => {
             Login
           </span>
         </p>
-
       </div>
     </div>
   );

@@ -9,8 +9,12 @@ const PostCard = ({ postData }) => {
         {/* Image */}
         <div className="w-full h-44 overflow-hidden bg-[#1a1a1a]">
           <img
-            className="w-full h-full object-cover"
-            src={postData.imageId ? reviewService.getImage(postData.imageId) : "/fallback.jpg"}
+            className="w-full h-full object-cover object-top"
+            src={
+              postData.imageId
+                ? reviewService.getImage(postData.imageId)
+                : "/fallback.jpg"
+            }
             alt={postData.title}
           />
         </div>
@@ -22,7 +26,9 @@ const PostCard = ({ postData }) => {
           </h2>
           <div className="flex items-center justify-between">
             <span className="text-xs text-[#555]">By {postData.username}</span>
-            <span className="text-xs text-[#2a7a4a] font-medium">● Published</span>
+            <span className="text-xs text-[#2a7a4a] font-medium">
+              ● Published
+            </span>
           </div>
         </div>
       </div>

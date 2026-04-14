@@ -15,7 +15,7 @@ export const Footer = () => {
               className="text-white text-base font-medium cursor-pointer"
               onClick={() => navigate("/")}
             >
-             <Logo/>
+              <Logo />
             </span>
             <p className="text-xs text-[#444]">
               A community for gamers, by gamers.

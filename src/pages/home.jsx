@@ -25,7 +25,10 @@ const Home = () => {
     return (
       <div className="w-full py-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
         {[...Array(8)].map((_, i) => (
-          <div key={i} className="bg-[#141414] border border-[#1e1e1e] rounded-xl overflow-hidden animate-pulse">
+          <div
+            key={i}
+            className="bg-[#141414] border border-[#1e1e1e] rounded-xl overflow-hidden animate-pulse"
+          >
             <div className="h-44 bg-[#1c1c1c]" />
             <div className="p-3.5 space-y-2">
               <div className="h-3 bg-[#1c1c1c] w-3/4 rounded" />
@@ -49,12 +52,14 @@ const Home = () => {
     <div className="py-10">
       {/* Page header */}
       <div className="mb-7">
-        <p className="text-xs font-semibold text-[#06B6D4] uppercase tracking-widest mb-1">Community</p>
+        <p className="text-xs font-semibold text-[#06B6D4] uppercase tracking-widest mb-1">
+          Community
+        </p>
         <h1 className="text-xl font-medium text-white">Latest Posts</h1>
       </div>
 
       {/* Grid */}
-<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {posts.map((post) => (
           <PostCard key={post.$id} postData={post} />
         ))}

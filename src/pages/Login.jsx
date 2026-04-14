@@ -1,11 +1,8 @@
-import React from 'react'
-import LoginCard from '../components/Auth/LoginCard'
-
+import React from "react";
+import LoginCard from "../components/Auth/LoginCard";
 
 const Login = () => {
-  return (
-    <LoginCard/>
-  )
-}
+  return <LoginCard />;
+};
 
-export default Login
+export default Login;

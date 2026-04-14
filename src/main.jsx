@@ -7,7 +7,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Signup from "./pages/Signup.jsx";
 import Login from "./pages/Login.jsx";
 import ReviewProvider from "./Context/ReviewProvider.jsx";
-import EditReview from "./pages/EditPost.jsx";
 import Profile from "./pages/Profile.jsx";
 import PostDetails from "./components/Posts/PostDetails.jsx";
 import MyPost from "./pages/MyPost.jsx";

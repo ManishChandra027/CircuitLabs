@@ -14,14 +14,19 @@ const ProfileCard = () => {
   const { userData } = useContext(ReviewContext);
   const isAuthor = userData && slug ? userData.$id === slug : false;
 
-  const { register, handleSubmit, reset } = useForm({ defaultValues: { bio: "", avatarId: "" } });
+  const { register, handleSubmit, reset } = useForm({
+    defaultValues: { bio: "", avatarId: "" },
+  });
 
   useEffect(() => {
     const fetchProfile = async () => {
       try {
         if (!slug) return;
-        const data = await profileService.getProfiles([Query.equal("userId", slug)]);
-        if (!data || data.documents.length === 0) throw new Error("No profile found");
+        const data = await profileService.getProfiles([
+          Query.equal("userId", slug),
+        ]);
+        if (!data || data.documents.length === 0)
+          throw new Error("No profile found");
         setProfile(data.documents[0]);
       } catch (err) {
         console.error(err);
@@ -32,7 +37,8 @@ const ProfileCard = () => {
   }, [slug]);
 
   useEffect(() => {
-    if (profile?.$id) reset({ bio: profile.bio || "", avatarId: profile.avatarId || "" });
+    if (profile?.$id)
+      reset({ bio: profile.bio || "", avatarId: profile.avatarId || "" });
   }, [profile, reset]);
 
   const handleUpdate = async (data) => {
@@ -53,36 +59,51 @@ const ProfileCard = () => {
     }
   };
 
-  if (error) return (
-    <div className="min-h-screen flex items-center justify-center bg-[#0d0d0d]">
-      <p className="text-sm text-red-400">{error}</p>
-    </div>
-  );
+  if (error)
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-[#0d0d0d]">
+        <p className="text-sm text-red-400">{error}</p>
+      </div>
+    );
 
-  if (!profile) return (
-    <div className="min-h-screen flex items-center justify-center bg-[#0d0d0d]">
-      <div className="w-8 h-8 border-2 border-[#2a2a2a] border-t-[#06B6D4] rounded-full animate-spin" />
-    </div>
-  );
+  if (!profile)
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-[#0d0d0d]">
+        <div className="w-8 h-8 border-2 border-[#2a2a2a] border-t-[#06B6D4] rounded-full animate-spin" />
+      </div>
+    );
 
   return (
     <div className="max-w-xs w-full mx-auto mt-2 p-4  rounded-xl flex flex-col items-center text-center">
       {isEdit ? (
-        <form onSubmit={handleSubmit(handleUpdate)} className="w-full flex flex-col items-center gap-3">
+        <form
+          onSubmit={handleSubmit(handleUpdate)}
+          className="w-full flex flex-col items-center gap-3"
+        >
           <label htmlFor="avatarUpload" className="cursor-pointer">
             <div className="relative w-54 h-54 rounded-full overflow-hidden border-2 border-[#06B6D4]">
               <img
                 className="w-full h-full object-cover"
-                src={profile.avatarId ? profileService.getImage(profile.avatarId) : "/fallback.jpg"}
+                src={
+                  profile.avatarId
+                    ? profileService.getImage(profile.avatarId)
+                    : "/fallback.jpg"
+                }
                 alt={profile.username}
               />
-              <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+              <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
                 <span className="text-xs text-white">Change</span>
               </div>
             </div>
           </label>
 
-          <input id="avatarUpload" type="file" className="text-xs text-gray-400" {...register("image")} />
+          <input
+            id="avatarUpload"
+            type="file"
+            accept="image/*"
+            className="text-xs text-gray-400"
+            {...register("image")}
+          />
 
           <textarea
             placeholder="Update your bio..."
@@ -121,8 +142,12 @@ const ProfileCard = () => {
             </div>
           )}
 
-          <h2 className="mt-4 text-base font-medium text-white">{profile.username}</h2>
-          <p className="mt-2 text-sm text-[#666] line-clamp-3">{profile.bio || "No bio added"}</p>
+          <h2 className="mt-4 text-base font-medium text-white">
+            {profile.username}
+          </h2>
+          <p className="mt-2 text-sm text-[#666] line-clamp-3">
+            {profile.bio || "No bio added"}
+          </p>
 
           {isAuthor && (
             <button
