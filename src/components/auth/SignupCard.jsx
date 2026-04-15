@@ -16,19 +16,15 @@ const SignupCard = () => {
     try {
       const session = await user.createAccount(formData);
       if (!session) throw new Error("Account creation failed");
-
       const currentData = await user.getAccount();
       if (!currentData) throw new Error("Failed to fetch user data");
-
       setStatus(true);
       setUserData(currentData);
-
       const profile = await profileService.createProfile({
         username: currentData.name,
         userId: currentData.$id,
       });
       if (!profile) throw new Error("Profile creation failed");
-
       navigate("/");
     } catch (err) {
       setError(err.message);
@@ -37,15 +33,18 @@ const SignupCard = () => {
   };
 
   const inputClass =
-    "w-full bg-[#1a1a1a] border border-[#2a2a2a] text-white placeholder-[#444] p-2.5 rounded-lg focus:outline-none focus:border-[#06B6D4] transition-colors text-sm";
-  const labelClass = "text-xs text-[#666] block mb-1";
+    "w-full bg-white border border-[#e0ddd8] text-[#111] placeholder-[#bbb] p-2.5 rounded-lg focus:outline-none focus:border-[#0891B2] transition-colors text-sm";
+  const labelClass = "text-xs text-[#888] block mb-1 font-medium";
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-[#0f0f0f]">
-      <div className="bg-[#141414] border border-[#1e1e1e] p-7 rounded-xl w-full max-w-sm">
-        <h1 className="text-lg font-medium text-white text-center mb-6">
+    <div className="flex justify-center items-center min-h-[80vh] bg-[#FAF9F6]">
+      <div className="bg-white border border-[#e8e6e1] p-8 rounded-2xl w-full max-w-sm shadow-sm">
+        <h1 className="text-xl font-semibold text-[#111] text-center mb-1">
           Create account
         </h1>
+        <p className="text-xs text-[#999] text-center mb-6">
+          Join the community
+        </p>
 
         <form
           className="flex flex-col gap-4"
@@ -66,7 +65,6 @@ const SignupCard = () => {
               })}
             />
           </div>
-
           <div>
             <label htmlFor="email" className={labelClass}>
               Email
@@ -82,7 +80,6 @@ const SignupCard = () => {
               })}
             />
           </div>
-
           <div>
             <label htmlFor="password" className={labelClass}>
               Password
@@ -99,21 +96,21 @@ const SignupCard = () => {
             />
           </div>
 
-          {error && <p className="text-red-400 text-xs">{error}</p>}
+          {error && <p className="text-red-500 text-xs">{error}</p>}
 
           <button
             type="submit"
-            className="w-full bg-[#06B6D4] text-black text-sm font-medium py-2.5 rounded-lg hover:bg-[#0891B2] transition-colors mt-1"
+            className="w-full bg-[#111] text-white text-sm font-medium py-2.5 rounded-lg hover:bg-[#333] transition-colors mt-1 cursor-pointer"
           >
             Sign Up
           </button>
         </form>
 
-        <p className="text-xs text-[#555] text-center mt-5">
+        <p className="text-xs text-[#999] text-center mt-5">
           Already have an account?{" "}
           <span
             onClick={() => navigate("/login")}
-            className="text-[#06B6D4] cursor-pointer hover:underline"
+            className="text-[#0891B2] cursor-pointer hover:underline font-medium"
           >
             Login
           </span>

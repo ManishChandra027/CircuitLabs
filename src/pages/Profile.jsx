@@ -40,9 +40,9 @@ const Profile = () => {
         {[...Array(4)].map((_, i) => (
           <div
             key={i}
-            className="bg-[#141414] border border-[#1e1e1e] rounded-xl overflow-hidden animate-pulse"
+            className="bg-white border border-[#e8e6e1] rounded-2xl overflow-hidden animate-pulse"
           >
-            <div className="h-44 bg-[#1c1c1c]" />
+            <div className="h-44 bg-[#e8e6e1]" />
             <div className="p-3.5 space-y-2">
               <div className="h-3 bg-[#1c1c1c] w-3/4 rounded" />
               <div className="h-3 bg-[#1c1c1c] w-1/2 rounded" />
@@ -61,13 +61,13 @@ const Profile = () => {
       {posts?.length === 0 || posts == null ? (
         <div className="min-h-[60vh] flex items-center justify-center">
           //{" "}
-          <p className="text-[#444] text-sm">Don't have posted anything yet</p>
+          <p className="text-[#bbb] text-sm">Don't have posted anything yet</p>
           //{" "}
         </div>
       ) : (
         <div className="py-5">
           <div className="mb-7">
-            <h1 className="text-xl font-medium text-white">Posts</h1>
+            <h1 className="text-xl font-bold text-[#111]">Posts</h1>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">

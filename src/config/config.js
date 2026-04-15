@@ -4,7 +4,8 @@ const config = {
   appwriteDatabaseId: String(import.meta.env.VITE_DATABASE_ID),
   appwriteCollectionIdReviews: String(import.meta.env.VITE_COLLECTION_REVIEWS),
   appwriteCollectionIdProfiles: String(import.meta.env.VITE_COLLECTION_PROFILES),
-  appwriteBucketId: String(import.meta.env.VITE_BUCKET_ID)
+  appwriteBucketId: String(import.meta.env.VITE_BUCKET_ID),
+  appwriteTpyeMceKey: String(import.meta.env.VITE_TYPEMCE_KEY),
 
 };
 

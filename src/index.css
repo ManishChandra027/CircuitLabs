@@ -1,7 +1,10 @@
 @import "tailwindcss";
-
+@plugin "@tailwindcss/typography";
 
 @theme {
-  --font-outfit: "Outfit", sans-serif; 
-  --font-jet: 'JetBrains Mono', 'monospace'; 
+  --font-outfit: "Outfit", sans-serif;
+  --font-jet: "JetBrains Mono", "monospace";
 }
+
+/* #0891B2
+#06B6D4 */

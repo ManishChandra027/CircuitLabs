@@ -20,12 +20,12 @@ const App = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] font-outfit">
+    <div className="min-h-screen bg-[#FAF9F6] flex flex-col font-outfit">
       <Header />
-      <div className="w-full max-w-8xl mx-auto px-6 md:px-10 ">
+      <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 flex-1">
         <Outlet />
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

@@ -40,20 +40,18 @@ const Header = () => {
 
   return (
     <>
-      {/* Main Navbar */}
-      <div className="sticky top-0 z-50 bg-[#0f0f0f] border-b border-[#1e1e1e] flex items-center justify-between w-full h-18 px-4 sm:px-6">
-        {/* Logo */}
-        <span
-          className="text-white text-base font-medium cursor-pointer shrink-0"
+      <div className="sticky top-0 z-50 bg-[#FAF9F6] border-b border-[#e8e6e1] flex items-center justify-between w-full h-18 px-4 sm:px-8">
+        <div
+          className="cursor-pointer shrink-0"
           onClick={() => {
             navigate("/");
             setMenuOpen(false);
           }}
         >
           <Logo />
-        </span>
+        </div>
 
-        {/* Desktop Nav — hidden on mobile */}
+        {/* Desktop Nav */}
         <ul className="hidden md:flex gap-1 items-center">
           {activeItems.map((item) => (
             <li key={item.name}>
@@ -62,8 +60,8 @@ const Header = () => {
                 className={({ isActive }) =>
                   `px-3 py-1.5 text-sm rounded-lg transition-colors duration-150 ${
                     isActive
-                      ? "bg-[#1e1e1e] text-white"
-                      : "text-[#666] hover:text-[#ccc] hover:bg-[#1a1a1a]"
+                      ? "bg-[#333333] text-white"
+                      : "text-[#666] hover:text-[#111] hover:bg-[#eee]"
                   }`
                 }
               >
@@ -73,9 +71,8 @@ const Header = () => {
           ))}
         </ul>
 
-        {/* Right side */}
         <div className="flex items-center gap-3">
-          {/* Desktop: avatar + name + logout */}
+          {/* Desktop right */}
           {authStatus && (
             <div className="hidden md:flex items-center gap-3">
               <div
@@ -85,15 +82,15 @@ const Header = () => {
                 {profile?.avatarId ? (
                   <img
                     src={profileService.getImage(profile.avatarId)}
-                    className="w-8 h-8 rounded-full object-cover"
+                    className="w-7 h-7 rounded-full object-cover"
                     alt={userData?.name}
                   />
                 ) : (
-                  <div className="w-7 h-7 rounded-full bg-[#06B6D4] text-black text-xs font-medium flex items-center justify-center">
+                  <div className="w-7 h-7 rounded-full bg-[#0891B2] text-white text-xs font-medium flex items-center justify-center">
                     {userData?.name?.charAt(0).toUpperCase()}
                   </div>
                 )}
-                <span className="text-sm text-[#888] hover:text-[#ccc] transition-colors">
+                <span className="text-sm text-[#666] hover:text-[#111] transition-colors">
                   {userData?.name}
                 </span>
               </div>
@@ -101,7 +98,7 @@ const Header = () => {
             </div>
           )}
 
-          {/* Mobile: avatar + hamburger */}
+          {/* Mobile */}
           <div className="flex md:hidden items-center gap-2">
             {authStatus && (
               <div
@@ -115,35 +112,33 @@ const Header = () => {
                     alt={userData?.name}
                   />
                 ) : (
-                  <div className="w-7 h-7 rounded-full bg-[#0891B2] text-black text-xs font-medium flex items-center justify-center">
+                  <div className="w-7 h-7 rounded-full bg-[#0891B2] text-white text-xs font-medium flex items-center justify-center">
                     {userData?.name?.charAt(0).toUpperCase()}
                   </div>
                 )}
               </div>
             )}
-
-            {/* Hamburger button */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
               className="flex flex-col gap-1 p-1.5 cursor-pointer bg-transparent border-none"
             >
               <span
-                className={`block w-5 h-0.5 bg-[#888] transition-all duration-200 ${menuOpen ? "rotate-45 translate-y-1.5" : ""}`}
+                className={`block w-5 h-0.5 bg-[#666] transition-all duration-200 ${menuOpen ? "rotate-45 translate-y-1.5" : ""}`}
               />
               <span
-                className={`block w-5 h-0.5 bg-[#888] transition-all duration-200 ${menuOpen ? "opacity-0" : ""}`}
+                className={`block w-5 h-0.5 bg-[#666] transition-all duration-200 ${menuOpen ? "opacity-0" : ""}`}
               />
               <span
-                className={`block w-5 h-0.5 bg-[#888] transition-all duration-200 ${menuOpen ? "-rotate-45 -translate-y-1.5" : ""}`}
+                className={`block w-5 h-0.5 bg-[#666] transition-all duration-200 ${menuOpen ? "-rotate-45 -translate-y-1.5" : ""}`}
               />
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Dropdown Menu */}
+      {/* Mobile dropdown */}
       {menuOpen && (
-        <div className="md:hidden bg-[#0f0f0f] border-b border-[#1e1e1e] px-4 py-3 flex flex-col gap-1 sticky top-14 z-40">
+        <div className="md:hidden bg-[#FAF9F6] border-b border-[#e8e6e1] px-4 py-3 flex flex-col gap-1 sticky top-14 z-40">
           {activeItems.map((item) => (
             <NavLink
               key={item.name}
@@ -152,19 +147,17 @@ const Header = () => {
               className={({ isActive }) =>
                 `px-3 py-2 text-sm rounded-lg transition-colors duration-150 ${
                   isActive
-                    ? "bg-[#1e1e1e] text-white"
-                    : "text-[#666] hover:text-[#ccc] hover:bg-[#1a1a1a]"
+                    ? "bg-[#111] text-white"
+                    : "text-[#666] hover:text-[#111] hover:bg-[#eee]"
                 }`
               }
             >
               {item.name}
             </NavLink>
           ))}
-
-          {/* Mobile logout */}
           {authStatus && (
-            <div className="mt-2 pt-2 border-t border-[#1e1e1e] flex items-center justify-between">
-              <span className="text-sm text-[#555]">{userData?.name}</span>
+            <div className="mt-2 pt-2 border-t border-[#e8e6e1] flex items-center justify-between">
+              <span className="text-sm text-[#888]">{userData?.name}</span>
               <LogoutBtn />
             </div>
           )}

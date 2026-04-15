@@ -3,9 +3,10 @@ import { useForm } from "react-hook-form";
 import reviewService from "../../service/appwrite/reviewService";
 import { useNavigate } from "react-router-dom";
 import { ReviewContext } from "../../Context/reviewContext";
+import TextEditor from "./TextEditor/TextEditor";
 
 const PostForm = ({ existingPost }) => {
-  const { register, handleSubmit, reset } = useForm({
+  const { register, handleSubmit, reset, control, getValues } = useForm({
     defaultValues: {
       title: existingPost?.title || "",
       description: existingPost?.description || "",
@@ -60,49 +61,80 @@ const PostForm = ({ existingPost }) => {
   };
 
   const inputClass =
-    "w-full bg-[#1e1e1e] border border-[#2a2a2a] text-white text-sm p-2.5 rounded-lg focus:outline-none focus:border-[#06B6D4] placeholder-[#444] transition-colors";
+    "w-full bg-white border border-[#e0ddd8] text-[#111] text-sm p-2.5 rounded-lg focus:outline-none focus:border-[#0891B2] placeholder-[#bbb] transition-colors";
+  const labelClass = "text-xs text-[#888] font-medium block mb-1";
 
   return (
-    <div className="min-h-screen bg-[#0d0d0d] flex items-center justify-center px-4 py-12">
-      <div className="bg-[#161616] border border-[#2a2a2a] p-6 rounded-xl w-full max-w-md">
-        <h1 className="text-lg font-medium text-white mb-5">
-          {existingPost ? "Edit Post" : "Add Post"}
-        </h1>
+    <div className="min-h-[80vh] bg-[#FAF9F6] py-12 px-4">
+      <div className="max-w-6xl mx-auto">
+        {/* Page heading */}
+        <div className="mb-8">
+          <p className="text-xs font-semibold text-[#999] uppercase tracking-widest mb-1">
+            {existingPost ? "Editing" : "New Post"}
+          </p>
+          <h1 className="text-2xl font-bold text-[#111]">
+            {existingPost ? "Edit your post" : "Write something"}
+          </h1>
+        </div>
 
-        <form
-          className="flex flex-col gap-3"
-          onSubmit={handleSubmit(handleSubmitForm)}
-        >
-          <input
-            type="text"
-            placeholder="Title"
-            className={inputClass}
-            {...register("title", { required: true })}
-          />
-          <textarea
-            placeholder="Description"
-            rows={3}
-            className={`${inputClass} resize-none`}
-            {...register("description")}
-          />
-          <textarea
-            placeholder="Review"
-            rows={4}
-            className={`${inputClass} resize-none`}
-            {...register("review")}
-          />
-          <input
-            type="file"
-            className="text-xs text-gray-400 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:bg-[#06B6D4] file:text-black file:cursor-pointer"
-            {...register("image")}
-          />
+        <form onSubmit={handleSubmit(handleSubmitForm)}>
+          {/* Mobile: flex-col | Desktop: flex-row */}
+          <div className="flex flex-col lg:flex-row gap-6 items-start justify-between">
+            {/* ── LEFT PANEL (mobile: full width, desktop: fixed 288px) ── */}
+            <div className="w-full lg:w-92 lg:shrink-0  bg-white border border-[#e8e6e1] rounded-2xl p-6 shadow-sm flex flex-col gap-5">
+              {/* Title */}
+              <div>
+                <label className={labelClass}>Title</label>
+                <input
+                  type="text"
+                  placeholder="Give your post a title..."
+                  className={inputClass}
+                  {...register("title", { required: true })}
+                />
+              </div>
 
-          <button
-            type="submit"
-            className="mt-2 w-full py-2 bg-[#06B6D4] text-black text-sm font-medium rounded-lg hover:bg-[#0891B2] transition-colors cursor-pointer"
-          >
-            {existingPost ? "Update Post" : "Publish Post"}
-          </button>
+              {/* Description */}
+              <div>
+                <label className={labelClass}>Short Description</label>
+                <textarea
+                  placeholder="A brief summary of your post..."
+                  rows={4}
+                  className={`${inputClass} resize-none`}
+                  {...register("description")}
+                />
+              </div>
+
+              {/* Cover image */}
+              <div>
+                <label className={labelClass}>Cover Image</label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  className="w-full text-sm text-[#888] file:mr-3 file:py-1.5 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-medium file:bg-[#111] file:text-white file:cursor-pointer hover:file:bg-[#333] transition-colors"
+                  {...register("image")}
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="w-full py-2.5 bg-[#111] text-white text-sm font-medium rounded-lg hover:bg-[#333] transition-colors cursor-pointer mt-auto"
+              >
+                {existingPost ? "Update Post" : "Publish Post"}
+              </button>
+            </div>
+
+            {/* ── RIGHT PANEL (mobile: full width, desktop: flex-1) ── */}
+            <div className="w-full max-w-2xl bg-white border border-[#e8e6e1] rounded-2xl p-6 shadow-sm">
+              <label className={labelClass}>Content</label>
+              <div className="rounded-lg overflow-hidden border border-[#e0ddd8] focus-within:border-[#0891B2] transition-colors mt-1">
+                <TextEditor
+                  control={control}
+                  name="review"
+                  defaultValue={getValues("review")}
+                />
+              </div>
+            </div>
+          </div>
         </form>
       </div>
     </div>

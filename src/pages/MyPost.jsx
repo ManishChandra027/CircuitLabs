@@ -20,16 +20,16 @@ const MyPost = () => {
 
   if (loading) {
     return (
-      <div className="w-full py-10 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {[...Array(4)].map((_, i) => (
+      <div className="py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {[...Array(3)].map((_, i) => (
           <div
             key={i}
-            className="bg-[#141414] border border-[#1e1e1e] rounded-xl overflow-hidden animate-pulse"
+            className="bg-white border border-[#e8e6e1] rounded-2xl overflow-hidden animate-pulse"
           >
-            <div className="h-44 bg-[#1c1c1c]" />
-            <div className="p-3.5 space-y-2">
-              <div className="h-3 bg-[#1c1c1c] w-3/4 rounded" />
-              <div className="h-3 bg-[#1c1c1c] w-1/2 rounded" />
+            <div className="h-44 bg-[#e8e6e1]" />
+            <div className="p-4 space-y-2">
+              <div className="h-3 bg-[#e8e6e1] w-3/4 rounded" />
+              <div className="h-3 bg-[#e8e6e1] w-1/2 rounded" />
             </div>
           </div>
         ))}
@@ -40,7 +40,7 @@ const MyPost = () => {
   if (posts.length === 0) {
     return (
       <div className="min-h-[60vh] flex items-center justify-center">
-        <p className="text-[#444] text-sm">You haven't posted anything yet</p>
+        <p className="text-[#bbb] text-sm">You haven't posted anything yet</p>
       </div>
     );
   }
@@ -48,13 +48,12 @@ const MyPost = () => {
   return (
     <div className="py-10">
       <div className="mb-7">
-        <p className="text-xs text-[#06B6D4] uppercase tracking-widest mb-1">
+        <p className="text-xs font-semibold text-[#999] uppercase tracking-widest mb-1">
           Your Content
         </p>
-        <h1 className="text-xl font-medium text-white">My Posts</h1>
+        <h1 className="text-xl font-bold text-[#111]">My Posts</h1>
       </div>
-
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {posts.map((post) => (
           <PostCard key={post.$id} postData={post} />
         ))}
